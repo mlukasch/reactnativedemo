@@ -1,21 +1,18 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import rootReducer from './reducers';
+import { Provider } from 'react-redux';
+import { applyMiddleware, createStore } from 'redux';
+import Album from './containers/Album';
+import createSagaMiddleware from 'redux-saga';
+import rootSaga from './sagas';
+
+const sagaMiddleware = createSagaMiddleware();
+const storeEnhancer = applyMiddleware(sagaMiddleware);
+const store = createStore(rootReducer, null, storeEnhancer);
+sagaMiddleware.run(rootSaga);
 
 export default () => (
-  <View style={styles.viewStyle}>
-    <Text style={styles.textStyle}>HAlloossssssssssossoo</Text>
-  </View>
+  <Provider store={store}>
+    <Album />
+  </Provider>
 );
-
-const styles = {
-  textStyle: {
-    borderWidth: 1,
-    borderColor: 'black',
-    fontSize: 24,
-  },
-  viewStyle: {
-    justifyContent: 'space-around',
-    flexDirection: 'row',
-  },
-};
-console.log("stylesssss")

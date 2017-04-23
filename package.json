@@ -10,6 +10,7 @@
     "logs": "react-native log-android"
   },
   "dependencies": {
+    "axios": "^0.16.1",
     "react": "16.0.0-alpha.6",
     "react-native": "0.43.4",
     "react-redux": "^5.0.4",
